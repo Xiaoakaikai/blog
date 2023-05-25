@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bkk.mapper.TagsMapper">
+
+    <select id="countTags" resultType="java.util.Map">
+        select id,name from b_tags
+    </select>
+
+    <insert id="saveArticleTags">
+        insert ignore into  b_article_tag(article_id,tag_id) values
+        <foreach collection="tags" item="tagsId" index="index" separator=",">
+            ( #{articleId},#{tagsId})
+        </foreach>
+    </insert>
+
+    <select id="selectByArticleId" resultType="java.lang.String">
+        select name from b_tags where id in(select tag_id from b_article_tag where article_id=#{articleId})
+    </select>
+
+    <delete id="deleteByArticleIds">
+        DELETE FROM b_article_tag WHERE article_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="articleCountByTagsId" resultType="java.lang.Integer">
+        select count(*) from b_article_tag where tag_id=#{tagsId};
+    </select>
+
+</mapper>

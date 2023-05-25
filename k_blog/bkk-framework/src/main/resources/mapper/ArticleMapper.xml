@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bkk.mapper.ArticleMapper">
+
+    <select id="getTags" resultType="com.bkk.domain.vo.TagVO">
+        select tag_id as id, `name` from b_tags a,b_article_tag b where article_id = #{id} and tag_id = a.id and del_flag=0;
+    </select>
+
+    <select id="getNewArticles" resultType="com.bkk.domain.vo.LatestArticleVO">
+        select id,title,avatar,create_time from b_article where is_publish=#{isPublish} and id != #{id} and del_flag=0
+        order by id desc limit 5
+    </select>
+
+    <select id="getNextOrLastArticle" resultType="com.bkk.domain.vo.LatestArticleVO">
+        select id,title,avatar from b_article where is_publish=#{isPublish} and del_flag=0
+        <choose>
+            <when test="type == 0">
+                and id &lt; #{id} order by id desc
+            </when>
+            <otherwise>
+                and id &gt; #{id} order by id Asc
+            </otherwise>
+        </choose>
+        limit 1
+    </select>
+
+    <select id="listRecommendArticles" resultType="com.bkk.domain.vo.LatestArticleVO">
+        SELECT
+            id,
+            title,
+            avatar,
+            create_time
+        FROM
+            (
+                SELECT DISTINCT
+                    article_id
+                FROM
+                        ( SELECT tag_id FROM b_article_tag WHERE article_id = #{articleId} ) t
+                            JOIN b_article_tag t1 ON t.tag_id = t1.tag_id
+                WHERE
+                    article_id != #{articleId}
+            ) t2
+                JOIN b_article a ON t2.article_id = a.id
+        WHERE a.is_publish = 1
+        ORDER BY
+            is_stick DESC,id DESC
+            LIMIT 6
+    </select>
+
+    <select id="contribute" resultType="com.bkk.domain.vo.ContributeVO">
+        select count,date from
+            (SELECT
+            count(id) as count,
+            DATE_FORMAT(create_time,'%Y-%m-%d') as date,
+            create_time
+            FROM
+            `b_article`
+            where DATE_FORMAT(create_time,'%Y-%m-%d') between #{lastTime} and #{nowTime}
+            and del_flag=0
+            GROUP BY
+            `create_time`) AS blog
+        ORDER BY blog.create_time ASC
+    </select>
+
+    <select id="selectPrimaryKey" resultType="com.bkk.domain.dto.ArticleDTO">
+        select a.id,a.title,a.avatar,a.summary,a.quantity,a.content,a.content_md,a.is_secret,a.is_stick,a.is_publish,a.is_original,a.original_url,
+               a.remark,a.create_time,a.keywords,b.name as categoryName from b_article a
+                                                                                 LEFT JOIN (SELECT id,name from b_category) b on a.category_id=b.id where a.id=#{id}
+    </select>
+
+</mapper>

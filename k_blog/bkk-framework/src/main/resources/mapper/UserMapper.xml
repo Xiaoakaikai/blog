@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bkk.mapper.UserMapper">
+
+    <select id="getById" resultType="com.bkk.domain.vo.SystemUserVO">
+        select id,username,role_id,is_disable,nickname,avatar from b_user
+        where id = #{id}
+    </select>
+
+    <select id="getMenuId" resultType="java.lang.Integer">
+        select menu_id from b_role_menu where role_id =
+        (select role_id from b_user_role where user_id=(select id from b_user where id=#{userId}))
+    </select>
+
+    <select id="getRoleNameById" resultType="java.lang.String">
+        select code from b_role where id=(select role_id from b_user where id=#{userId})
+    </select>
+
+    <update id="updateLoginInfo">
+        update b_user set last_login_time = now(),ip_address=#{ip},ip_source=#{cityInfo},os=#{os},browser=#{browser} where id=#{loginId}
+    </update>
+
+</mapper>
