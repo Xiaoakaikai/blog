@@ -6,12 +6,12 @@
   </a>
 </p>
 
-<center>
+<div align=center>
 
 # 小阿凯的博客
 **基于Springboot + Vue开发的前后端分离博客项目**
 
-</center>
+</div>
 
 
 
