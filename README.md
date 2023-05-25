@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.xiaoakai.top">
-    <img src="https://www.xiaoakai.top/51cdbf71f3234e46bad24365d04a74c1.png" alt="拾壹博客" style="border-radius: 50%">
+    <img src="https://www.xiaoakai.top/51cdbf71f3234e46bad24365d04a74c1.png" width=150 alt="小阿凯的博客" style="border-radius: 50%">
   </a>
 </p>
 
