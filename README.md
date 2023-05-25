@@ -1,13 +1,32 @@
+## 博客介绍
+
+<p align="center">
+  <a href="https://www.xiaoakai.top">
+    <img src="https://www.xiaoakai.top/51cdbf71f3234e46bad24365d04a74c1.png" alt="拾壹博客" style="border-radius: 50%">
+  </a>
+</p>
+
 <center>
-
-<img src=https://www.xiaoakai.top/51cdbf71f3234e46bad24365d04a74c1.png width=240 />
-
-
 
 # 小阿凯的博客
 **基于Springboot + Vue开发的前后端分离博客项目**
 
 </center>
+
+
+
+
+<p align="center">
+   <a target="_blank" href="https://github.com/Xiaoakaikai/blog">
+      <img src="https://img.shields.io/hexpm/l/plug.svg"/>
+      <img src="https://img.shields.io/badge/JDK-1.8+-green.svg"/>
+      <img src="https://img.shields.io/badge/springboot-2.5.0-green"/>
+      <img src="https://img.shields.io/badge/vue-2.5.17-green"/>
+      <img src="https://img.shields.io/badge/mysql-8.0.28-green"/>
+      <img src="https://img.shields.io/badge/mybatis--plus-3.4.3-green"/>
+      <img src="https://img.shields.io/badge/redis-7.0.9-green"/>
+   </a>
+</p>
 
 # 平台简介
 * 前后台界面采用[拾壹博客](https://gitee.com/quequnlong/shiyi-blog)，页面美观
@@ -52,7 +71,7 @@ Xftp|Linux 文件上传工具
 # 运行环境
 服务器： 腾讯云2核4G CentOS7.6
 
-对象存储： 七牛云OSS
+对象存储： 本地/七牛云OSS
 
 最低配置： 1核2G服务器（关闭ElasticSearch）
 
@@ -62,6 +81,10 @@ Xftp|Linux 文件上传工具
 
 ### **后台链接**：[admin.xiaoakai.top](https://admin.xiaoakai.top/)
 **账号**：test ，**密码**：123456
+
+### **gitee地址**：[https://gitee.com/xiao_a_kai/blog](https://gitee.com/xiao_a_kai/blog)
+### 前台接口文档：[https://www.xiaoakai.top/xak/doc.html](https://www.xiaoakai.top/xak/doc.html)
+### 后台接口文档：[https://admin.xiaoakai.top/xak/doc.html](https://admin.xiaoakai.top/xak/doc.html)
 
 # 项目截图
 ![博客.png](https://www.xiaoakai.top/ec214c39a27c4ce59c9ee047cb306711.png)
